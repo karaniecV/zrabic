@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,30 +8,32 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup
-  thirdFormGroup: FormGroup
+  nameFormGroup: FormGroup;
+  emailFormGroup: FormGroup
+  passwordFormGroup: FormGroup
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.nameFormGroup = this._formBuilder.group({
+      nameCtrl: ['', Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.emailFormGroup = this._formBuilder.group({
       
-      secondCtrl: ['', Validators.required]
+      emailCtrl: ['', Validators.required]
     });
-    this.thirdFormGroup = this._formBuilder.group({
+    this.passwordFormGroup = this._formBuilder.group({
       
-      thirdCtrl: ['', Validators.required]
+      passwordCtrl: ['', Validators.required]
     });
 
    
   }
 
   onSignUp(){
-    console.log('this.secondFormGroup', this.secondFormGroup.value)
+    this.authService.onSignUp(this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl).subscribe()
+    console.log('this.passwordFormGroup.value', this.passwordFormGroup.value.passwordCtrl)
+    console.log('this.emailFormGroup.value', this.emailFormGroup.value.emailCtrl)
 
   }
   
