@@ -22,7 +22,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput formControlName="emailCtrl" placeholder="tut@tut.by" required email>
-          <mat-error *ngIf="emailFormGroup.invalid">{{getErrorMessage()}}</mat-error>
+          <!-- <mat-error *ngIf="emailFormGroup.invalid">{{getErrorMessage()}}</mat-error> -->
         </mat-form-field>
         <div>
           <button mat-raised-button matStepperPrevious>Back</button>
