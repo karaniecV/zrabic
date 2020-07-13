@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
     });
     this.emailFormGroup = this._formBuilder.group({
       
-      emailCtrl: ['', Validators.required, Validators.email]
+      emailCtrl: ['', Validators.required]
     });
     this.passwordFormGroup = this._formBuilder.group({
       
