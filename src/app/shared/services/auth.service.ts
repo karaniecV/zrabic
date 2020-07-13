@@ -26,6 +26,19 @@ export class AuthService {
       )
   }
 
+  onLogIn(email: string, password: string){
+    return this.http.post(`${CONFIG.signIn}${CONFIG.apiKey}`,
+      { email, password, returnSecureToken: true })
+      .pipe(
+        tap((data) => {
+          console.log('log', data)
+          
+          // this._loginHendler(data);
+
+        })
+      )
+  }
+
 
 
 }

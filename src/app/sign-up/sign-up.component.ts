@@ -20,14 +20,12 @@ export class SignUpComponent implements OnInit {
     });
     this.emailFormGroup = this._formBuilder.group({
       
-      emailCtrl: ['', Validators.required]
+      emailCtrl: ['', Validators.required, Validators.email]
     });
     this.passwordFormGroup = this._formBuilder.group({
       
       passwordCtrl: ['', Validators.required]
     });
-
-   
   }
 
   onSignUp(){
@@ -36,6 +34,15 @@ export class SignUpComponent implements OnInit {
     console.log('this.emailFormGroup.value', this.emailFormGroup.value.emailCtrl)
 
   }
+
+  getErrorMessage() {
+    // console.log(this.emailFormGroup)
+    if (this.emailFormGroup.controls.emailCtrl.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.emailFormGroup.controls.emailCtrl.hasError('email') ? 'Not a valid email' : '';
+  }
+
   
 
 
