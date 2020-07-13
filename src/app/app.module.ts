@@ -14,12 +14,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { LogInComponent } from './log-in/log-in.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignUpComponent
+    SignUpComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatButtonModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
