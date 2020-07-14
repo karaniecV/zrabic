@@ -1,0 +1,35 @@
+<div class="todo container">
+  <h1>TODO</h1>
+  <button mat-button (click)="hide = !hide">Add New Task</button>
+
+  <div class="create-task" *ngIf="hide">
+    <div class="back"></div>
+    <form class="example-form">
+      <div class="align-middle">
+      <mat-form-field color="accent"  class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="" value="" [formControl]="title" required>
+      </mat-form-field>
+
+      <mat-form-field color="accent"  class="example-full-width">
+        <mat-label>Leave a discription</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required></textarea>
+      </mat-form-field>
+
+
+      <mat-form-field color="accent">
+        <mat-label>Period of execution</mat-label>
+        <input matInput [matDatepicker]="picker1" [formControl]="date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="onCreateTask(); hide=false">Sbmt</button>
+    </div>
+    </form>
+  </div>
+
+
+
+
+</div>
