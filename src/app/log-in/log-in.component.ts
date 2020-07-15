@@ -27,7 +27,7 @@ export class LogInComponent implements OnInit {
   }
 
   onLogIn(){
-    this.authService.onLogIn(this.email.value, this.password.value).subscribe()
+    this.authService.onLogIn(this.email.value, this.password.value).subscribe(data=>console.log(data))
   }
 
 }
