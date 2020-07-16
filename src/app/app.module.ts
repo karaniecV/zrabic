@@ -13,16 +13,19 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ErrorsComponent } from './shared/errors/errors.component';
+import { ErrorInterceptor } from './shared/errors/error.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SignUpComponent,
-    LogInComponent
+    LogInComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,10 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
