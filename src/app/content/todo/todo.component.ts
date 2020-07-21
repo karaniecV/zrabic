@@ -22,8 +22,11 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem(CONFIG.localStorageUserId)){
       this.taskService.getTodoTasks()
-      .subscribe(data=>console.log('getTsks', data))
-      
+      .subscribe((data: Task[]) => {
+        this.tasks = data
+      }
+      // console.log('getTsks', data))
+      )
     }
   }
 
@@ -35,7 +38,7 @@ export class TodoComponent implements OnInit {
     }
     this.taskService.addNewTodoTask(task, CONFIG.todoBase).subscribe(data=>{
       if(data){
-        this.tasks.push(task);
+        this.tasks.unshift(task);
       }
     })
   }
