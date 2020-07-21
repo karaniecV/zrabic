@@ -3,38 +3,44 @@ import { HttpClient } from '@angular/common/http';
 import { CONFIG } from './../../config';
 import { tap, map} from 'rxjs/operators';
 import { Task } from '../../models/task.model';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  tasks: Task[];
+  private _tasks: Task[];
+  private _listChange: BehaviorSubject<any> = new BehaviorSubject<any>(this._tasks);
+
+  get tasks() {
+    return this._listChange.asObservable();
+  }
 
   constructor(private http: HttpClient) { }
 
   addNewTodoTask(task, aniBase) {
     return this.http.post(`${CONFIG.dataBaseUsers}/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${aniBase}.json`, task)
-  }
+      .pipe(
+        tap((data: { name: string }) => {
+          this._tasks.unshift({ id: data.name, ...task })
+        })
+      )
+    }
 
-  getTodoTasks() : Observable<Task[]>{
+  getTodoTasks(): Observable<Task[]>{
     return this.http.get(`${CONFIG.dataBaseUsers}/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.todoBase}.json`)
       .pipe(
         map((data) => {
-          console.log(data)
           const tasks = [];
           for (let key in data) {
             tasks.unshift({ id: key, ...data[key] });
           }
-          this.tasks = tasks;
-          return this.tasks;
+          this._tasks = tasks;
+          return this._tasks;
         }
-        //   : { name: string }) => {
-        //   this.tasks.unshift({ id: data.name, ...tasks })
-        // }
         )
       )
   }

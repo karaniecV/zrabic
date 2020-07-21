@@ -25,7 +25,6 @@ export class TodoComponent implements OnInit {
       .subscribe((data: Task[]) => {
         this.tasks = data
       }
-      // console.log('getTsks', data))
       )
     }
   }
@@ -36,11 +35,7 @@ export class TodoComponent implements OnInit {
       body: `${this.body.value}`,
       date: `${this.date.value}` 
     }
-    this.taskService.addNewTodoTask(task, CONFIG.todoBase).subscribe(data=>{
-      if(data){
-        this.tasks.unshift(task);
-      }
-    })
+    this.taskService.addNewTodoTask(task, CONFIG.todoBase).subscribe()
   }
 
   closeForm(){
