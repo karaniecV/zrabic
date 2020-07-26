@@ -16,13 +16,22 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ContentComponent } from './content/content.component';
+import { StartPgComponent } from './content/start-pg/start-pg.component';
+import { TodoComponent } from './content/todo/todo.component';
+import { InPrgrsComponent } from './content/in-prgrs/in-prgrs.component';
+import { DoneComponent } from './content/done/done.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TaskComponent } from './content/task/task.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SignUpComponent,
-    LogInComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +45,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatInputModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
 

@@ -1,0 +1,29 @@
+.in-progress{
+  background-color: rgb(211, 209, 209);
+}
+
+.back {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(168, 182, 201, 0.8);
+}
+
+.example-form{
+  position: absolute;
+  width: 80%;
+  min-height: 300px;
+  right: 0;
+  left: 0;
+  top: 0;
+  margin: auto;
+  z-index: 101;
+  background-color: lavenderblush;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  left:50%; margin-left:-150px
+}

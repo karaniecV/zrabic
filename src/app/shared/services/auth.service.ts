@@ -17,11 +17,8 @@ export class AuthService {
     return this.http.post(`${CONFIG.signUp}${CONFIG.apiKey}`, 
       { email, password, returnSecureToken: true })
       .pipe(
-        tap((data) => {
-          console.log('data', data)
-          
-          // this._loginHendler(data);
-
+        tap((data: AuthResponse) => {
+          this.onLogLs(data.localId)
         })
       )
   }
@@ -30,14 +27,23 @@ export class AuthService {
     return this.http.post(`${CONFIG.signIn}${CONFIG.apiKey}`,
       { email, password, returnSecureToken: true })
       .pipe(
-        tap((data) => {
-          console.log('log', data)
-          
-          // this._loginHendler(data);
-
+        tap((data: AuthResponse) => {
+          this.onLogLs(data.localId)
         })
       )
   }
+
+  onLogLs(userId) {
+    localStorage.removeItem(`${CONFIG.localStorageUserId}`);
+    localStorage.setItem(`${CONFIG.localStorageUserId}`, userId)
+  }
+
+  logOut(){
+    return localStorage.removeItem(`${CONFIG.localStorageUserId}`);
+
+
+  }
+
 
 
 
