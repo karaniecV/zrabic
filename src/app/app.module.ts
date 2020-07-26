@@ -13,7 +13,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ContentComponent } from './content/content.component';
@@ -31,14 +31,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     AppComponent,
     HeaderComponent,
     SignUpComponent,
-    LogInComponent,
-    ContentComponent,
-    StartPgComponent,
-    TodoComponent,
-    InPrgrsComponent,
-    DoneComponent,
-    TaskComponent,
-    UsersListComponent
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +49,9 @@ import { UsersListComponent } from './users-list/users-list.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
