@@ -8,11 +8,12 @@ import { TaskService } from './task.service';
   providedIn: 'root',
 })
 
-export class MyPostResolver implements Resolve<Task[]>{
+export class TaskResolver implements Resolve<Task[]>{
 
-  constructor(private taskService: TaskService){}
-
+  constructor(private taskService: TaskService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Task[]> {
     return this.taskService.getTodoTasks()
   }
+
+}

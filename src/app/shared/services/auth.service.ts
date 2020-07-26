@@ -38,6 +38,12 @@ export class AuthService {
     localStorage.setItem(`${CONFIG.localStorageUserId}`, userId)
   }
 
+  logOut(){
+    return localStorage.removeItem(`${CONFIG.localStorageUserId}`);
+
+
+  }
+
 
 
 

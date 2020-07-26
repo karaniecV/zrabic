@@ -4,8 +4,8 @@ export const CONFIG = {
   signIn: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
   dataBaseUsers: 'https://treba-zrabic.firebaseio.com/users',
   localStorageUserId: 'zrabicUserId',
-  todoBase: 'todoUserList',
-  inProgressBase: 'inProgressUserList',
-  doneBase: 'doneUserList',
+  todo: 'Todo',
+  inProgress: 'In Progress',
+  done: 'Done',
 
 }

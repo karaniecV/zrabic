@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/shared/services/task-service/task.service';
 import { FormControl, Validators } from '@angular/forms';
 import { CONFIG } from 'src/app/shared/config';
+import { Task } from 'src/app/shared/models/task.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-in-prgrs',
@@ -12,6 +15,7 @@ export class InPrgrsComponent implements OnInit {
 
   hide = false;
   noTasks = false;
+  tasks: Observable<Task[]>;;
 
   title = new FormControl('', [Validators.required]);
   body = new FormControl('', [Validators.required]);
@@ -22,27 +26,37 @@ export class InPrgrsComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem(CONFIG.localStorageUserId)) {
-      this.taskService.getInProgressTasks(CONFIG.inProgressBase)
-        .subscribe(data => {
-          if (!data) {
-            this.noTasks = true;
-          } else this.noTasks = false
-          // console.log('getTsksIP', data)
-        }
-        )
+      this.tasks = this.taskService.getIPTasks()
+
+
+
+      // this.taskService.getIPTasks()
+      //   .subscribe((data: Task[]) => {
+      //     if (!data) {
+      //       this.noTasks = true;
+      //     } else {
+      //       this.noTasks = false
+      //       this.tasksIP = data
+      //     }
+      //   }
+      //   )
     }
   }
 
-  onCreateTask() {
+  onCreateTask(){
+    if(this.title.valid && this.body.valid && this.date.valid){
     const task = {
-      title: this.title.value,
-      body: this.body.value,
-      date: this.date.value
+      title: `${this.title.value}`,
+      body: `${this.body.value}`,
+      date: `${this.date.value} `,
+      state:  CONFIG.inProgress
     }
-    this.taskService.addNewTodoTask(task, CONFIG.inProgressBase).subscribe(data => console.log('inprogr', data))
-
+    this.taskService.addTaskIP(task, CONFIG.inProgress).subscribe()
+    this.closeForm()
   }
-  closeForm(){
+}
+
+  closeForm() {
     this.hide = false;
     this.title.reset();
     this.body.reset();

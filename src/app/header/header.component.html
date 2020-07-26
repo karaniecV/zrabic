@@ -11,7 +11,13 @@
         <a class="nav-link" routerLink="users-list" [routerLinkActive]="'active'"
         [routerLinkActiveOptions]="{exact: true}">Show users</a>
       </li>
-      <li class="nav-item dropdown">
+
+      <li class="nav-item" *ngIf="user">
+        <a class="nav-link" routerLink="users-list" [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{exact: true}" (click)="onLogOut">Log Out</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="!user">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Start use

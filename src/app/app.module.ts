@@ -23,6 +23,8 @@ import { InPrgrsComponent } from './content/in-prgrs/in-prgrs.component';
 import { DoneComponent } from './content/done/done.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TaskComponent } from './content/task/task.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     StartPgComponent,
     TodoComponent,
     InPrgrsComponent,
-    DoneComponent
+    DoneComponent,
+    TaskComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
