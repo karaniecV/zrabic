@@ -16,8 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ErrorsComponent } from './shared/errors/errors.component';
-import { ErrorInterceptor } from './shared/errors/error.interceptor';
+// import { ErrorsComponent } from './shared/errors/errors.component';
+// import { ErrorInterceptor } from './shared/errors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ErrorInterceptor } from './shared/errors/error.interceptor';
     HeaderComponent,
     SignUpComponent,
     LogInComponent,
-    ErrorsComponent
+    // ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,7 @@ import { ErrorInterceptor } from './shared/errors/error.interceptor';
     MatIconModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
   ],
   bootstrap: [AppComponent]
