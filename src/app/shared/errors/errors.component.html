@@ -1,0 +1,10 @@
+<!-- <div *ngIf="error" class="error-container col-sm-10 col-md-6">
+  <div class="alert alert-danger">
+    <h2>{{error.title}}</h2>
+  </div>
+</div> -->
+
+<div class="mistake" *ngIf="error">
+  <img src="../../../assets/images/att.svg">
+  <p class="text-danger">{{error.title}}</p>
+</div>

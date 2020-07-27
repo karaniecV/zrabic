@@ -5,10 +5,8 @@
   <div *ngIf="tasks" >
     <div *ngFor="let task of tasks" [routerLink]="['/tasks', task.id]">
       <div>{{task.title}}</div>
-      <!-- <div>{{task.body}}</div> -->
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
       <hr>
-
     </div>
   </div>
 

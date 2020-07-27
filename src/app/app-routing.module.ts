@@ -7,6 +7,7 @@ import { TaskComponent } from './content/task/task.component';
 import { TaskResolver } from './shared/services/task-service/task.resolver';
 import { TodoComponent } from './content/todo/todo.component';
 import { InPrgrsComponent } from './content/in-prgrs/in-prgrs.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'todo-list', component: TodoComponent},
   {path: 'in-progress-list', component: InPrgrsComponent},
   {path: 'done-list', component: TodoComponent},
+  {path: 'users-list', component: UsersListComponent},
 ];
 
 @NgModule({

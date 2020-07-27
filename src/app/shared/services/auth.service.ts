@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   logOut(){
-    return localStorage.removeItem(`${CONFIG.localStorageUserId}`);
+    localStorage.removeItem(`${CONFIG.localStorageUserId}`);
 
 
   }
