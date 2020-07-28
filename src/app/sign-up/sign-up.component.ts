@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { CONFIG } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-sign-up',
@@ -32,7 +33,8 @@ export class SignUpComponent implements OnInit {
   onSignUp(){
     this.authService.onSignUp(this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl).subscribe(data=>{
       if(data){
-        this.router.navigate([''])
+        this.authService.addUserData(JSON.stringify(this.nameFormGroup.value.nameCtrl))
+        this.router.navigate([CONFIG.redirectUrl])
       }
     })
   }
