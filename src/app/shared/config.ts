@@ -5,6 +5,10 @@ export const CONFIG = {
   dataBaseUsers: 'https://treba-zrabic.firebaseio.com/',
   localStorageUserId:'zrabicUserId',
   inProgress: 'In Progress',
+  redirectUrl: '/',
+  logInUrl: '/log-in',
+  signUpUrl:'/sign-ug',
+  userLocalStorage: 'zrabicUser',
   todo: 'Todo',
   done: 'Done',
   errorList: {
