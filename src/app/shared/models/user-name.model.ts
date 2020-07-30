@@ -1,6 +1,6 @@
 export class UserName{
   constructor(
-    public userName: string,
-    public dataId: string,
+    public id: string,
+    public name: string,
   ){}
 }

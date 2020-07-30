@@ -12,6 +12,9 @@ export class HeaderComponent implements OnInit {
 
   user: string;
   $user = this.authService.user;
+  userName: string;
+  $userName = this.authService.userName;
+  
 
 
   constructor( private authService: AuthService) { }
@@ -20,8 +23,11 @@ export class HeaderComponent implements OnInit {
     console.log('3')
     if(localStorage.getItem(`${CONFIG.localStorageUserId}`)){
       this.user = localStorage.getItem(`${CONFIG.localStorageUserId}`)
+      this.authService.getSignUser(this.user).subscribe((data: UserName) => this.userName = data.name)
+
     }
-    this.authService.getSignUser(this.user).subscribe((data: UserName) => console.log(data.userName))
+    // this.authService.userName.subscribe(a=>{console.log(a)})
+
   }
 
 

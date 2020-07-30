@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TaskComponent } from './content/task/task.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { StartPgComponent } from './content/start-pg/start-pg.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { StartPgComponent } from './content/start-pg/start-pg.component';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule
     
 
 

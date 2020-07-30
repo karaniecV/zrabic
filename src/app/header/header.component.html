@@ -17,6 +17,11 @@
         [routerLinkActiveOptions]="{exact: true}" (click)="onLogOut()">Log Out</a>
       </li>
 
+      <li class="nav-item" *ngIf="$user | async"> 
+        <a class="nav-link" routerLink="users-list" [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{exact: true}" (click)="onLogOut()">{{userName}}</a>
+      </li>
+
       <li class="nav-item dropdown" *ngIf="!($user | async)">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">

@@ -24,7 +24,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   addTask(task, state) {
-    return this.http.post(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
@@ -34,7 +34,7 @@ export class TaskService {
   }
 
   changeTask(task, id, state) {
-    return this.http.put(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.put(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${state}/${id}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
@@ -44,7 +44,7 @@ export class TaskService {
   }
 
   addTaskIP(task, state) {
-    return this.http.post(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
@@ -54,7 +54,7 @@ export class TaskService {
   }
 
   addTaskD(task, state) {
-    return this.http.post(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
@@ -64,7 +64,7 @@ export class TaskService {
   }
 
   getTodoTasks(): Observable<Task[]> {
-    return this.http.get(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.todo}.json`)
       .pipe(
         map((data) => {
@@ -80,7 +80,7 @@ export class TaskService {
   }
 
   getIPTasks(): Observable<Task[]> {
-    return this.http.get(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.inProgress}.json`)
       .pipe(
         map((data) => {
@@ -95,7 +95,7 @@ export class TaskService {
       )
   }
   getDTasks(): Observable<Task[]> {
-    return this.http.get(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.done}.json`)
       .pipe(
         map((data) => {
@@ -131,13 +131,29 @@ export class TaskService {
   }
 
   deleteTask(id, state) {
-    return this.http.delete(`${CONFIG.dataBaseUsers}/${localStorage
+    return this.http.delete(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${state}/${id}.json`)
       .pipe(
         tap((data) => {
           console.log('data', data)
           return data;
         })
+      )
+  }
+
+  getAllTasks(): Observable<Task[]> {
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData.json`)
+      .pipe(
+        map((data) => {
+          const tasks = [];
+          for (let key in data) {
+            tasks.unshift({ id: key, ...data[key] });
+          }
+          // this._tasksD = tasks;
+          console.log(tasks)
+          return this._tasksD;
+        }
+        )
       )
   }
 

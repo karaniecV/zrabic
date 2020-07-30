@@ -33,7 +33,10 @@ export class SignUpComponent implements OnInit {
   onSignUp(){
     this.authService.onSignUp(this.emailFormGroup.value.emailCtrl, this.passwordFormGroup.value.passwordCtrl).subscribe(data=>{
       if(data){
-        this.authService.addUserData(JSON.stringify(this.nameFormGroup.value.nameCtrl))
+        const userName = {
+          name: `${this.nameFormGroup.value.nameCtrl}`,
+        }
+        this.authService.addUserData(userName)
         this.router.navigate([CONFIG.redirectUrl])
       }
     })

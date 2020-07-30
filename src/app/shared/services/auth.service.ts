@@ -26,7 +26,7 @@ export class AuthService {
 
 
   onSignUp(email: string, password: string) {
-    return this.http.post(`${CONFIG.signUp}${CONFIG.apiKey}`, 
+    return this.http.post(`${CONFIG.signUp}${CONFIG.apiKey}`,
       { email, password, returnSecureToken: true })
       .pipe(
         tap((data: AuthResponse) => {
@@ -36,7 +36,7 @@ export class AuthService {
       )
   }
 
-  onLogIn(email: string, password: string){
+  onLogIn(email: string, password: string) {
     return this.http.post(`${CONFIG.signIn}${CONFIG.apiKey}`,
       { email, password, returnSecureToken: true })
       .pipe(
@@ -52,8 +52,9 @@ export class AuthService {
     localStorage.setItem(`${CONFIG.localStorageUserId}`, userId)
   }
 
-  logOut(){
+  logOut() {
     localStorage.removeItem(`${CONFIG.localStorageUserId}`);
+    localStorage.removeItem(`${CONFIG.userLocalStorage}`);
     this.user.next(null);
   }
 
@@ -72,13 +73,7 @@ export class AuthService {
   getSignUser(userId): Observable<any> {
     return this.http.get(`${CONFIG.dataBaseUsers}/userData/${userId}.json`)
       .pipe(
-        tap((data) => {
-
-          
-          
-
-          return data;
-
+        map((data) => {
           const usersData = [];
           for (let key in data) {
             usersData.unshift({ id: key, ...data[key] });
@@ -100,14 +95,15 @@ export class AuthService {
 
 
   autoLogIn() {
-    console.log('2')
-    let user: {
-      email: string,
-      id: string,
+    if (localStorage.getItem(CONFIG.localStorageUserId)) {
+      let user: {
+        email: string,
+        id: string,
+      }
+      user = JSON.parse(localStorage.getItem(`${CONFIG.userLocalStorage}`));
+      const loadedUser = new User(user.email, user.id)
+      this.user.next(loadedUser);
     }
-    user = JSON.parse(localStorage.getItem(`${CONFIG.userLocalStorage}`));
-    const loadedUser = new User(user.email, user.id)
-    this.user.next(loadedUser);
   }
 
 
