@@ -13,7 +13,7 @@ export class TaskResolver implements Resolve<Task[]>{
   constructor(private taskService: TaskService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Task[]> {
-    return this.taskService.getTodoTasks()
+    return this.taskService.getTasks()
   }
 
 }

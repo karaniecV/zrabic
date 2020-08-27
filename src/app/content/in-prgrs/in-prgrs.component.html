@@ -1,9 +1,10 @@
 <div class="in-progress container">
-  <h2>In Progress Tasks</h2>
-  <div *ngIf="!tasks">you does not have in progress tasks</div>
-  <button mat-button (click)="hide = !hide">Add New Task</button>
+  <div class="head-tasks">
+    <h2 [routerLink]="['in-progress-list']">In Progress</h2>
+    <button mat-button (click)="hide = !hide">Add New Task</button>
+  </div>
 
-  <div *ngIf="tasks" >
+  <div *ngIf="tasks">
     <div *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
       <div>{{task.title}}</div>
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
@@ -32,7 +33,8 @@
 
         <mat-form-field color="accent" class="example-full-width">
           <mat-label>Leave a discription</mat-label>
-          <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required autocomplete="off"></textarea>
+          <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required
+            autocomplete="off"></textarea>
         </mat-form-field>
 
 

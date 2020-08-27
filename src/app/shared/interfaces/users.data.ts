@@ -1,6 +1,7 @@
 export interface UsersData {
     name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    title: string;
+    state: string;
+    body: string;
+    date: string;
   }

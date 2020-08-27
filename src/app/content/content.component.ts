@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../shared/services/task-service/task.service';
+import { CONFIG } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-content',
@@ -8,10 +8,14 @@ import { TaskService } from '../shared/services/task-service/task.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private taskService: TaskService) { }
+user = false;
+
+  constructor(){}
 
   ngOnInit(): void {
-   this.taskService.getAllTasks().subscribe()
+    if(localStorage.getItem(`${CONFIG.localStorageUserId}`)){
+      this.user = true;
+    }
   }
 
 }

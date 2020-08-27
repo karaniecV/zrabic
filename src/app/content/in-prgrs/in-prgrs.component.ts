@@ -3,7 +3,8 @@ import { TaskService } from 'src/app/shared/services/task-service/task.service';
 import { FormControl, Validators } from '@angular/forms';
 import { CONFIG } from 'src/app/shared/config';
 import { Task } from 'src/app/shared/models/task.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -15,31 +16,18 @@ export class InPrgrsComponent implements OnInit {
 
   hide = false;
   noTasks = false;
-  tasks: Observable<Task[]>;;
+  tasks: Observable<Task[]>;
 
   title = new FormControl('', [Validators.required]);
   body = new FormControl('', [Validators.required]);
   date = new FormControl('', [Validators.required]);
 
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private authService: AuthService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem(CONFIG.localStorageUserId)) {
       this.tasks = this.taskService.getIPTasks()
-
-
-
-      // this.taskService.getIPTasks()
-      //   .subscribe((data: Task[]) => {
-      //     if (!data) {
-      //       this.noTasks = true;
-      //     } else {
-      //       this.noTasks = false
-      //       this.tasksIP = data
-      //     }
-      //   }
-      //   )
     }
   }
 
@@ -49,9 +37,11 @@ export class InPrgrsComponent implements OnInit {
       title: `${this.title.value}`,
       body: `${this.body.value}`,
       date: `${this.date.value} `,
-      state:  CONFIG.inProgress
+      state:  CONFIG.inProgress,
+      name: this.authService.userName.value.name
+
     }
-    this.taskService.addTaskIP(task, CONFIG.inProgress).subscribe()
+    this.taskService.addTask(task, CONFIG.inProgress).subscribe()
     this.closeForm()
   }
 }

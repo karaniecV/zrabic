@@ -45,9 +45,6 @@ export class TaskComponent implements OnInit {
       this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
         this.taskId = paramMap.get('id');
         this.task = this.taskService.getTaskId(this.taskId);
-        if (!this.task.date) {
-          this.task.date = 'gh'
-        }
       });
     }
   }
@@ -57,8 +54,9 @@ export class TaskComponent implements OnInit {
     if (isDelete) {
       this.taskService.deleteTask(this.task.id, this.task.state)
         .subscribe()
+        this.router.navigate([CONFIG.redirectUrl])
     }
-    this.isDeleted = true;
+    // this.isDeleted = true;
   }
 
   onMoveTaskToDone() {
@@ -68,14 +66,17 @@ export class TaskComponent implements OnInit {
       title: this.task.title,
       body: this.task.body,
       date: this.task.date,
-      state: CONFIG.done
+      state: CONFIG.done,
+      name: this.task.name
     }
-    this.taskService.addTaskD(task, CONFIG.done)
-      .subscribe(data => {
-        if (data) {
-          this.isMoved = true;
-        }
-      })
+    this.taskService.addTask(task, CONFIG.done)
+      .subscribe()
+      // (data => {
+      //   if (data) {
+      //     this.isMoved = true;
+      //   }
+      // })
+      this.toMainPage()
   }
 
   onMoveTaskToInProgress() {
@@ -85,9 +86,10 @@ export class TaskComponent implements OnInit {
       title: this.task.title,
       body: this.task.body,
       date: this.task.date,
-      state: CONFIG.inProgress
+      state: CONFIG.inProgress,
+      name: this.task.name
     }
-    this.taskService.addTaskIP(task, CONFIG.inProgress)
+    this.taskService.addTask(task, CONFIG.inProgress)
       .subscribe()
       this.toMainPage()
   }
@@ -99,7 +101,8 @@ export class TaskComponent implements OnInit {
       title: this.task.title,
       body: this.task.body,
       date: this.task.date,
-      state: CONFIG.todo
+      state: CONFIG.todo,
+      name: this.task.name
     }
     this.taskService.addTask(task, CONFIG.todo)
       .subscribe()
@@ -112,7 +115,9 @@ export class TaskComponent implements OnInit {
         title: this.title.value,
         body: this.body.value,
         date: this.date.value,
-        state: this.task.state
+        state: this.task.state,
+        name: this.task.name
+
       }
 
       this.taskService.changeTask(this.task, this.taskId, this.task.state).subscribe(data => {

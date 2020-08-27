@@ -25,53 +25,66 @@ export class TaskService {
 
   addTask(task, state) {
     return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
+      .getItem(`${CONFIG.localStorageUserId}`)}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
-          this._tasks.unshift({ id: data.name, ...task })
+          if (state === CONFIG.todo) {
+            this._tasks.unshift({ id: data.name, ...task })
+          } else if (state === CONFIG.inProgress) {
+            this._tasksIP.unshift({ id: data.name, ...task })
+          } else if (state === CONFIG.done) {
+            this._tasksD.unshift({ id: data.name, ...task })
+          }
         })
       )
   }
 
   changeTask(task, id, state) {
     return this.http.put(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${state}/${id}.json`, task)
+      .getItem(`${CONFIG.localStorageUserId}`)}/${id}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
-          this._tasks.unshift({ id: data.name, ...task })
+          if (state === CONFIG.todo) {
+            this._tasks.unshift({ id: data.name, ...task })
+          } else if (state === CONFIG.inProgress) {
+            this._tasksIP.unshift({ id: data.name, ...task })
+          } else if (state === CONFIG.done) {
+            this._tasksD.unshift({ id: data.name, ...task })
+          }
         })
       )
   }
 
-  addTaskIP(task, state) {
-    return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
-      .pipe(
-        tap((data: { name: string }) => {
-          this._tasksIP.unshift({ id: data.name, ...task })
-        })
-      )
-  }
+  // addTaskIP(task, state) {
+  //   return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
+  //     .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
+  //     .pipe(
+  //       tap((data: { name: string }) => {
+  //         this._tasksIP.unshift({ id: data.name, ...task })
+  //       })
+  //     )
+  // }
 
-  addTaskD(task, state) {
-    return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
-      .pipe(
-        tap((data: { name: string }) => {
-          this._tasksD.unshift({ id: data.name, ...task })
-        })
-      )
-  }
+  // addTaskD(task, state) {
+  //   return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
+  //     .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
+  //     .pipe(
+  //       tap((data: { name: string }) => {
+  //         this._tasksD.unshift({ id: data.name, ...task })
+  //       })
+  //     )
+  // }
 
-  getTodoTasks(): Observable<Task[]> {
+  getTasks(): Observable<Task[]> {
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.todo}.json`)
+      .getItem(`${CONFIG.localStorageUserId}`)}.json`)
       .pipe(
         map((data) => {
-          const tasks = [];
+          let tasks = [];
           for (let key in data) {
-            tasks.unshift({ id: key, ...data[key] });
+            tasks.unshift({ id: key, ...data[key] })
           }
+          tasks = tasks.filter(item => item.state == CONFIG.todo)
           this._tasks = tasks;
           return this._tasks;
         }
@@ -81,28 +94,31 @@ export class TaskService {
 
   getIPTasks(): Observable<Task[]> {
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.inProgress}.json`)
+      .getItem(`${CONFIG.localStorageUserId}`)}.json`)
       .pipe(
         map((data) => {
-          const tasks = [];
+          let tasks = [];
           for (let key in data) {
-            tasks.unshift({ id: key, ...data[key] });
+            tasks.unshift({ id: key, ...data[key] })
           }
+          tasks = tasks.filter(item => item.state == CONFIG.inProgress)
           this._tasksIP = tasks;
           return this._tasksIP;
         }
         )
       )
   }
+
   getDTasks(): Observable<Task[]> {
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${CONFIG.done}.json`)
+      .getItem(`${CONFIG.localStorageUserId}`)}.json`)
       .pipe(
         map((data) => {
-          const tasks = [];
+          let tasks = [];
           for (let key in data) {
-            tasks.unshift({ id: key, ...data[key] });
+            tasks.unshift({ id: key, ...data[key] })
           }
+          tasks = tasks.filter(item => item.state == CONFIG.done)
           this._tasksD = tasks;
           return this._tasksD;
         }
@@ -131,15 +147,19 @@ export class TaskService {
   }
 
   deleteTask(id, state) {
+    if (state == CONFIG.todo) {
+      this._tasks = this._tasks.filter(i => i.id !== id)
+      console.log('this._tasks', this._tasks)
+    } else if (state == CONFIG.inProgress) {
+      this._tasksIP = this._tasksIP.filter(i => i.id !== id)
+    } else if (state == CONFIG.done) {
+      this._tasksD = this._tasksD.filter(i => i.id !== id)
+    }
     return this.http.delete(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-      .getItem(`${CONFIG.localStorageUserId}`)}/${state}/${id}.json`)
-      .pipe(
-        tap((data) => {
-          console.log('data', data)
-          return data;
-        })
-      )
+      .getItem(`${CONFIG.localStorageUserId}`)}/${id}.json`)
   }
+
+  ELEMENT_DATA: Task[] = []
 
   getAllTasks(): Observable<Task[]> {
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData.json`)
@@ -149,11 +169,23 @@ export class TaskService {
           for (let key in data) {
             tasks.unshift({ id: key, ...data[key] });
           }
-          // this._tasksD = tasks;
-          console.log(tasks)
-          return this._tasksD;
-        }
-        )
+          tasks.forEach(i => {
+              const tasks1 = [];
+              for (let key in i) {
+                tasks1.unshift({ id: key, ...i[key] });
+              }
+              tasks1.pop();
+              // const ELEMENT_DATA = [];
+              tasks1.forEach(i => this.ELEMENT_DATA.push(i))
+              this.ELEMENT_DATA.forEach(i => {
+                // delete i.date
+                // delete i.id
+                // delete i.name
+              })
+            })
+          
+          return this.ELEMENT_DATA;
+        })
       )
   }
 

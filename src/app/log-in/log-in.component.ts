@@ -10,9 +10,17 @@ import { AuthService } from '../shared/services/auth.service';
 export class LogInComponent implements OnInit {
 
   hide = true;
-
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
+
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+  }
+
+  onLogIn(){
+    this.authService.onLogIn(this.email.value, this.password.value).subscribe()
+  }
 
   getErrorMessage() {
     if (this.email.hasError('required') ) {
@@ -21,14 +29,5 @@ export class LogInComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit(): void {
-    console.log('ok')
-  }
-
-  onLogIn(){
-    this.authService.onLogIn(this.email.value, this.password.value).subscribe(data=>console.log(data))
-  }
 
 }

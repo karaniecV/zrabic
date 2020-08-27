@@ -14,7 +14,7 @@
 
 .example-form{
   position: absolute;
-  width: 80%;
+  width: 100%;
   min-height: 300px;
   right: 0;
   left: 0;
@@ -26,4 +26,7 @@
   flex-direction: column;
   padding: 20px;
   left:50%; margin-left:-150px
+}
+.head-tasks{
+  text-align: center;
 }

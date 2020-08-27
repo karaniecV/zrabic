@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthResponse } from '../interfaces/auth.response';
-import { tap, map, filter, switchMap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { CONFIG } from 'src/app/shared/config';
 import { UserName } from '../models/user-name.model';
-import { UpperCasePipe } from '@angular/common';
 
 
 @Injectable({
@@ -16,22 +15,19 @@ import { UpperCasePipe } from '@angular/common';
 export class AuthService {
 
   user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  // userId: string;
 
   userName: BehaviorSubject<UserName> = new BehaviorSubject<UserName>(null);
 
-
-
   constructor(private http: HttpClient, private router: Router) { }
-
 
   onSignUp(email: string, password: string) {
     return this.http.post(`${CONFIG.signUp}${CONFIG.apiKey}`,
       { email, password, returnSecureToken: true })
       .pipe(
         tap((data: AuthResponse) => {
-          // this.onLogLs(data.localId)
-          this._loginHendler(data);
+          if(data){
+            localStorage.setItem(`${CONFIG.localStorageUserId}`, data.localId)
+          }
         })
       )
   }
@@ -41,34 +37,33 @@ export class AuthService {
       { email, password, returnSecureToken: true })
       .pipe(
         tap((data: AuthResponse) => {
-          // this.onLogLs(data.localId)
           this._loginHendler(data);
         })
       )
   }
 
-  onLogLs(userId) {
-    localStorage.removeItem(`${CONFIG.localStorageUserId}`);
-    localStorage.setItem(`${CONFIG.localStorageUserId}`, userId)
+  startLogin(data){
+    this._loginHendler(data);
+  }
+
+  private _loginHendler(data: AuthResponse) {
+    localStorage.setItem(`${CONFIG.localStorageUserId}`, data.localId)
+    const user: User = new User(data.email, data.localId);
+    this.user.next(user);
+    this.router.navigate([CONFIG.redirectUrl]);
+    localStorage.setItem(`${CONFIG.userLocalStorage}`, JSON.stringify(user))
+    this.getSignUser(data.localId)
   }
 
   logOut() {
     localStorage.removeItem(`${CONFIG.localStorageUserId}`);
     localStorage.removeItem(`${CONFIG.userLocalStorage}`);
     this.user.next(null);
+    this.userName.next(null);
+    this.router.navigate(['log-in'])
   }
 
-  private _loginHendler(data: AuthResponse) {
-    // const expirationDate: Date = new Date(new Date().getTime() + Number(data.expiresIn) * 1000);
-    const user: User = new User(data.email, data.localId);
-    this.user.next(user);
-    this.router.navigate([CONFIG.redirectUrl]);
-    // this.userId = user.id
-    // this.getSignUser(this.userId);
-    this.getSignUser(data.localId);
-    localStorage.setItem(`${CONFIG.userLocalStorage}`, JSON.stringify(user))
-    this.onLogLs(data.localId)
-  }
+  
 
   getSignUser(userId): Observable<any> {
     return this.http.get(`${CONFIG.dataBaseUsers}/userData/${userId}.json`)
@@ -78,10 +73,8 @@ export class AuthService {
           for (let key in data) {
             usersData.unshift({ id: key, ...data[key] });
           }
-          const dataUser = usersData[0];
-          console.log('dataUser', dataUser)
+          let dataUser: UserName = new UserName(String(usersData[0].id), usersData[0].name);
           this.userName.next(dataUser);
-          // this.userValue = this.userData.getValue();
           return dataUser;
         })
       )
@@ -90,9 +83,8 @@ export class AuthService {
   addUserData(userData) {
     return this.http.post(`${CONFIG.dataBaseUsers}/userData/${localStorage
       .getItem(CONFIG.localStorageUserId)}.json`, userData)
-      .subscribe()
+      
   }
-
 
   autoLogIn() {
     if (localStorage.getItem(CONFIG.localStorageUserId)) {
@@ -103,12 +95,8 @@ export class AuthService {
       user = JSON.parse(localStorage.getItem(`${CONFIG.userLocalStorage}`));
       const loadedUser = new User(user.email, user.id)
       this.user.next(loadedUser);
+      this.getSignUser(user.id).subscribe()
     }
   }
-
-
-
-
-
 
 }
