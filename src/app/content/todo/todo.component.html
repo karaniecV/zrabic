@@ -14,7 +14,7 @@
 
   <div class="create-task" *ngIf="hide">
     <div class="back"></div>
-    <div class="container">
+    <div class="back-form">
       <form class="example-form">
         <div style="text-align: end; cursor: pointer;" (click)="closeForm()">
           <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor"
@@ -29,24 +29,24 @@
         <div class="align-middle">
           <mat-form-field color="accent" class="example-full-width">
             <mat-label>Title</mat-label>
-            <input matInput [formControl]="title" autocomplete="off" required>
+            <input matInput placeholder="" value="" [formControl]="title" required autocomplete="off">
           </mat-form-field>
 
           <mat-form-field color="accent" class="example-full-width">
             <mat-label>Leave a discription</mat-label>
-            <textarea matInput [formControl]="body" required></textarea>
+            <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required
+              autocomplete="off"></textarea>
           </mat-form-field>
 
 
           <mat-form-field color="accent">
             <mat-label>Period of execution</mat-label>
-            <input matInput [matDatepicker]="dp" [formControl]="date" placeholder="mm/dd/yyyy" autocomplete="off"
-              required>
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp></mat-datepicker>
+            <input matInput [matDatepicker]="picker1" [formControl]="date" required autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
           <br>
-          <button mat-raised-button (click)="onCreateTask()">Sbmt</button>
+          <button mat-raised-button (click)="onCreateTask(); hide=false">Sbmt</button>
         </div>
       </form>
     </div>

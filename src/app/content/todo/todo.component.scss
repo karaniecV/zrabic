@@ -1,5 +1,6 @@
+@import "variables";
 .todo{
-  background-color: rgb(240, 239, 239);
+  background-color: $background1;
 }
 
 .back {
@@ -12,7 +13,7 @@
   background: rgba(168, 182, 201, 0.8);
 }
 
-.example-form{
+.back-form{
   position: fixed;
   top: 0;
   bottom: 0;
@@ -20,19 +21,19 @@
   right: 0;
   z-index: 101;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  background-color: lavenderblush;
-  max-width: 350px;
-  padding: 25px;
-  top: 20%;
-  right: 30%;
 }
 
-.align-middle{
-  display: contents;
-  margin: 25px;
+.example-form{
+  width: 300px;
+  min-height: 350px;
+  z-index: 102;
+  background-color: lavenderblush;
+  padding: 20px;
 }
+
 .head-tasks{
   text-align: center;
 }
-

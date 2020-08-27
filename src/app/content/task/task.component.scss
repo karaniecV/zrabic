@@ -1,3 +1,4 @@
+@import "variables";
 
 .post{
   // background-color: $colorwindow;
@@ -49,7 +50,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(168, 182, 201, 0.8);
+  background: rgba(41, 42, 43, 0.8);
 }
 
 .alert-success{
@@ -121,4 +122,19 @@ background: transparent;
 .align-middle{
   display: flex;
   flex-direction: column;
+}
+
+.post-script, .todo{
+  background: $background3;
+}
+.post-title, .in-progress{
+  background: $background2;
+}
+.post-date, .edit{
+  background: $background1;
+}
+
+.post-date, .post-title, .post-script{
+  margin: 0;
+  padding: 10px;
 }
