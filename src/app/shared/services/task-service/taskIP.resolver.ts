@@ -8,12 +8,12 @@ import { TaskService } from './task.service';
   providedIn: 'root',
 })
 
-export class TaskResolver implements Resolve<Task[]>{
+export class TaskIPResolver implements Resolve<Task[]>{
 
   constructor(private taskService: TaskService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Task[]> {
-    return this.taskService.getTasks()
+    return this.taskService.getIPTasks()
   }
 
 }

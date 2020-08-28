@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { CONFIG } from 'src/app/shared/config';
-import { UserName } from '../shared/models/user-name.model';
+import { User } from '../shared/models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   user: string;
   $user = this.authService.user;
-
+  userName: User;
+  $userName = this.authService.userName;
+  userNameSubscription: Subscription;
 
   constructor( private authService: AuthService) { }
 
   ngOnInit(): void {
-    console.log('3')
-    if(localStorage.getItem(`${CONFIG.localStorageUserId}`)){
-      this.user = localStorage.getItem(`${CONFIG.localStorageUserId}`)
-    }
-    this.authService.getSignUser(this.user).subscribe((data: UserName) => console.log(data.userName))
+    this.userNameSubscription = this.authService.user.subscribe((user)=> this.userName = user)
   }
 
-
   onLogOut(){
-    this.authService.logOut()
+    this.authService.logOut() 
+  }
+
+  ngOnDestroy(){
+    this.userNameSubscription.unsubscribe();
   }
 
 }

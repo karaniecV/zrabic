@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CONFIG } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-content',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+  user = false;
+
+  constructor(){}
 
   ngOnInit(): void {
+    if(localStorage.getItem(`${CONFIG.localStorageUserId}`)){
+      this.user = true;
+    }
   }
 
 }

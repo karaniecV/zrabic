@@ -1,6 +1,5 @@
 <div class="container">
-  <!-- <div class="example-container"> -->
-    <div class="row">
+    <div class="row" style="margin-top: 20px;">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input type="email" matInput placeholder="tut@tut.by" [formControl]="email" required>
@@ -17,7 +16,15 @@
         </button>
         <mat-error *ngIf="password.invalid">You must enter a value</mat-error>
       </mat-form-field>
-    <!-- </div> -->
-    <button mat-raised-button (click)="onLogIn()">Log In</button>
+    <button mat-raised-button (click)="onLogIn()" style="color: #F44336;">Log In</button>
+
+    <hr>
+    <div>or</div>
+    <hr>
+    
+    <button mat-raised-button color="warn" routerLink="/sign-up" [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="{exact: true}" >Sign up</button>
+  
   </div>
+
 </div>

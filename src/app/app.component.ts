@@ -8,10 +8,11 @@ import { AuthService } from './shared/services/auth.service';
 })
 export class AppComponent implements OnInit {
 
+  user: string;
+
   constructor(private authService: AuthService){}
 
   ngOnInit(){
-    console.log('1')
     this.authService.autoLogIn();
   }
 }
