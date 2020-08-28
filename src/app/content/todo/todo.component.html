@@ -1,11 +1,11 @@
 <div class="todo container">
   <div class="head-tasks">
-    <h2 [routerLink]="['todo-list']">Todo</h2>
-    <button mat-button (click)="hide = !hide">Add New Task</button>
+    <h2 appFocus1 [routerLink]="['todo-list']">Todo</h2>
+    <button appFocus1 mat-button (click)="hide = !hide">Add New Task</button>
   </div>
 
   <div *ngIf="tasks">
-    <div *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
+    <div appFocus1 *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]" style="cursor: pointer">
       <div>{{task.title}}</div>
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
       <hr>

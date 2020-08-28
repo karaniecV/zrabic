@@ -25,13 +25,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TaskComponent } from './content/task/task.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { StartPgComponent } from './content/start-pg/start-pg.component';
 import { MatTableModule } from '@angular/material/table';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './loader/loader.interceptor';
+import { Focus1Directive } from './shared/services/directives/focus1.directive';
+import { Focus2Directive } from './shared/services/directives/focus2.directive';
 
 @NgModule({
   declarations: [
+    Focus1Directive,
+    Focus2Directive,
     AppComponent,
     HeaderComponent,
     SignUpComponent,
@@ -43,11 +46,10 @@ import { LoaderInterceptor } from './loader/loader.interceptor';
     DoneComponent,
     TaskComponent,
     UsersListComponent,
-    StartPgComponent,
     LoaderComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),

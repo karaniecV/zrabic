@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TaskService } from '../shared/services/task-service/task.service';
 import { Task } from '../shared/models/task.model';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -24,7 +23,7 @@ export class UsersListComponent implements OnInit {
       })
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event) { 
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

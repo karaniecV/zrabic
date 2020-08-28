@@ -13,6 +13,8 @@ export class AuthResolver implements Resolve<UserName>{
   constructor(private authServise: AuthService){}
 
   resolve(router: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserName>{
+    if(localStorage.getItem(`${CONFIG.localStorageUserId}`)){
     return this.authServise.getSignUser(localStorage.getItem(`${CONFIG.localStorageUserId}`))
+    }
   }
 }

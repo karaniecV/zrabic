@@ -17,11 +17,9 @@ export class InPrgrsComponent implements OnInit {
   hide = false;
   noTasks = false;
   tasks: Observable<Task[]>;
-
   title = new FormControl('', [Validators.required]);
   body = new FormControl('', [Validators.required]);
   date = new FormControl('', [Validators.required]);
-
 
   constructor(private taskService: TaskService, private authService: AuthService) { }
 
@@ -31,20 +29,19 @@ export class InPrgrsComponent implements OnInit {
     }
   }
 
-  onCreateTask(){
-    if(this.title.valid && this.body.valid && this.date.valid){
-    const task = {
-      title: `${this.title.value}`,
-      body: `${this.body.value}`,
-      date: `${this.date.value} `,
-      state:  CONFIG.inProgress,
-      name: this.authService.userName.value.name
-
+  onCreateTask() {
+    if (this.title.valid && this.body.valid && this.date.valid) {
+      const task = {
+        title: `${this.title.value}`,
+        body: `${this.body.value}`,
+        date: `${this.date.value} `,
+        state: CONFIG.inProgress,
+        name: this.authService.userName.value.name
+      }
+      this.taskService.addTask(task, CONFIG.inProgress).subscribe()
+      this.closeForm()
     }
-    this.taskService.addTask(task, CONFIG.inProgress).subscribe()
-    this.closeForm()
   }
-}
 
   closeForm() {
     this.hide = false;

@@ -1,9 +1,7 @@
 @import "variables";
 
 .post{
-  // background-color: $colorwindow;
   border-radius: 10px;
-  max-width: 600px;
   padding: 15px;
   margin-top: 20px;
 }
@@ -12,31 +10,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // font-family: $mainfont;
 }
 
 
 .post-place{
-  // background-color: $colorwindow;
   border-radius: 10px;
   max-width: 500px;
   padding-bottom: 15px;
   padding-left: 15px;
-  
 }
+
 .user-item{
   align-items: center;
   padding-top: 10px;
 }
 .mind-user{
-  // background-color: $colorshadow;
   padding: 10px;
   border-radius: 20px;
   max-width: 75%;
 }
 
 .input-img{
-  // background-color: $colorshadow;
   border-radius: 20px;
   padding-left: 15px;
   padding-top: 7px;
@@ -62,7 +56,6 @@
   top: 0;
   margin: auto;
   z-index: 101;
-  // color: $fontcolor;
 }
 
 .alert-head{
@@ -77,8 +70,8 @@
 
 .btn-cncl img:focus{
   width: 30px;
-
 }
+
 .btn-cncl{
 border: none;
 background: transparent;

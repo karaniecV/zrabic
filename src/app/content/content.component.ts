@@ -8,7 +8,7 @@ import { CONFIG } from 'src/app/shared/config';
 })
 export class ContentComponent implements OnInit {
 
-user = false;
+  user = false;
 
   constructor(){}
 

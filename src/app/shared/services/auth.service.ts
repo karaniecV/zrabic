@@ -15,7 +15,6 @@ import { UserName } from '../models/user-name.model';
 export class AuthService {
 
   user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-
   userName: BehaviorSubject<UserName> = new BehaviorSubject<UserName>(null);
 
   constructor(private http: HttpClient, private router: Router) { }

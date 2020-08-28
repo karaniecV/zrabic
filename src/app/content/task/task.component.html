@@ -4,24 +4,22 @@
 
     <div>
 
-
-      <div>
-        <button class="btn mat-raised-button edit" (click)="hide=true">Edit</button>
-        <button class="btn mat-raised-button in-progress" (click)="onMoveTaskToInProgress()"
+      <div class="row">
+        <button appFocus2 class="btn mat-raised-button edit col-3" (click)="hide=true">Edit</button>
+        <button appFocus2 class="btn mat-raised-button in-progress col-3" (click)="onMoveTaskToInProgress()"
           *ngIf="task.state !== 'In Progress'">Move
           to "In Progress"</button>
-        <button class="btn mat-raised-button todo" (click)="onMoveTaskToTodo()" *ngIf="task.state !== 'Todo'">Move to
+        <button appFocus2 class="btn mat-raised-button todo col-3" (click)="onMoveTaskToTodo()" *ngIf="task.state !== 'Todo'">Move to
           "Todo"</button>
-        <button class="btn mat-raised-button" (click)="onMoveTaskToDone()" *ngIf="task.state !== 'Done'"
+        <button appFocus2 class="btn mat-raised-button col-3" (click)="onMoveTaskToDone()" *ngIf="task.state !== 'Done'"
           style="background-color: rgb(134, 134, 134);">Move to "Done"</button>
-        <button mat-raised-button color="warn" (click)="onDeleteTask()">Delete</button>
+        <button appFocus2 mat-raised-button color="warn" class="col-3" (click)="onDeleteTask()">Delete</button>
       </div>
-
 
       <div>
 
         <div class="post-date" style="  background-color: rgb(240, 239, 239)">
-          <h3>Period Of Execution: {{ task.date | date:'MM/dd/yyyy' }}</h3>
+          <h3>Period: {{ task.date | date:'MM/dd/yyyy' }}</h3>
         </div>
 
         <div class="post-title" style="background-color: rgb(211, 209, 209);">
@@ -29,12 +27,9 @@
         </div>
 
         <div class="post-script" style="background-color: rgb(175, 175, 175);">
-          <h2>Task Description: {{ task.body }}</h2>
+          <h2>Description: {{ task.body }}</h2>
         </div>
       </div>
-
-
-      
 
     </div>
 
@@ -56,7 +51,7 @@
       <div class="align-middle">
         <mat-form-field color="accent" class="example-full-width">
           <mat-label>Title</mat-label>
-          <input matInput [formControl]="title" autocomplete="off" required>
+          <input matInput [formControl]="title" autocomplete="off" required [(ngModel)]="task.title">
         </mat-form-field>
 
         <mat-form-field color="accent" class="example-full-width">
@@ -77,9 +72,6 @@
       </div>
     </form>
   </div>
-
-
-
 
 
   <div class="delete-post" *ngIf="isDeleted">

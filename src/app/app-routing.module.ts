@@ -18,7 +18,8 @@ const routes: Routes = [
 },
   {path: 'log-in', component: LogInComponent},
   {path: 'tasks/:id', component: TaskComponent,
-  resolve: {tasks: TaskResolver}} ,
+  resolve: {tasks: TaskResolver}
+} ,
   {path: 'sign-up', component: SignUpComponent},
   {path: 'todo-list', component: TodoComponent},
   {path: 'in-progress-list', component: InPrgrsComponent},

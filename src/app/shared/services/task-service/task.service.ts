@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { Task } from '../../models/task.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CONFIG } from 'src/app/shared/config';
 
 @Injectable({
@@ -13,13 +13,7 @@ export class TaskService {
   private _tasks: Task[];
   private _tasksIP: Task[];
   private _tasksD: Task[];
-  // private _listChange: BehaviorSubject<any> = new BehaviorSubject<any>(this._tasks);
-
-  // get tasks() {
-  //   return this._listChange.asObservable();
-
-  // }
-
+  ELEMENT_DATA: Task[];
 
   constructor(private http: HttpClient) { }
 
@@ -54,26 +48,6 @@ export class TaskService {
         })
       )
   }
-
-  // addTaskIP(task, state) {
-  //   return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-  //     .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
-  //     .pipe(
-  //       tap((data: { name: string }) => {
-  //         this._tasksIP.unshift({ id: data.name, ...task })
-  //       })
-  //     )
-  // }
-
-  // addTaskD(task, state) {
-  //   return this.http.post(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
-  //     .getItem(`${CONFIG.localStorageUserId}`)}/${state}.json`, task)
-  //     .pipe(
-  //       tap((data: { name: string }) => {
-  //         this._tasksD.unshift({ id: data.name, ...task })
-  //       })
-  //     )
-  // }
 
   getTasks(): Observable<Task[]> {
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
@@ -149,7 +123,6 @@ export class TaskService {
   deleteTask(id, state) {
     if (state == CONFIG.todo) {
       this._tasks = this._tasks.filter(i => i.id !== id)
-      console.log('this._tasks', this._tasks)
     } else if (state == CONFIG.inProgress) {
       this._tasksIP = this._tasksIP.filter(i => i.id !== id)
     } else if (state == CONFIG.done) {
@@ -159,9 +132,9 @@ export class TaskService {
       .getItem(`${CONFIG.localStorageUserId}`)}/${id}.json`)
   }
 
-  ELEMENT_DATA: Task[] = []
 
   getAllTasks(): Observable<Task[]> {
+    this.ELEMENT_DATA = [];
     return this.http.get(`${CONFIG.dataBaseUsers}/tasksData.json`)
       .pipe(
         map((data) => {
@@ -170,20 +143,15 @@ export class TaskService {
             tasks.unshift({ id: key, ...data[key] });
           }
           tasks.forEach(i => {
-              const tasks1 = [];
-              for (let key in i) {
-                tasks1.unshift({ id: key, ...i[key] });
-              }
-              tasks1.pop();
-              // const ELEMENT_DATA = [];
-              tasks1.forEach(i => this.ELEMENT_DATA.push(i))
-              this.ELEMENT_DATA.forEach(i => {
-                // delete i.date
-                // delete i.id
-                // delete i.name
-              })
+            const tasks1 = [];
+            for (let key in i) {
+              tasks1.unshift({ id: key, ...i[key] });
+            }
+            tasks1.pop();
+            tasks1.forEach(i => this.ELEMENT_DATA.push(i))
+            this.ELEMENT_DATA.forEach(i => {
             })
-          
+          })
           return this.ELEMENT_DATA;
         })
       )

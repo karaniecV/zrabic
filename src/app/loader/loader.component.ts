@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 export class LoaderComponent implements OnInit {
 
   isLoader = false;
-
   isLoaderSubscription: Subscription;
 
   constructor( private loaderService: LoaderService) { }
