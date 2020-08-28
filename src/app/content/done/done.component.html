@@ -1,0 +1,56 @@
+<div class="done container">
+  <div class="head-tasks">
+    <h2 appFocus1 [routerLink]="['done-list']">Done</h2>
+    <button appFocus1 mat-button (click)="hide = !hide">Add New Task</button>
+  </div>
+
+  <div *ngIf="tasks">
+    <div appFocus1 *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]" style="cursor: pointer">
+      <div>{{task.title}}</div>
+      <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="create-task" *ngIf="hide">
+    <div class="back"></div>
+    <div class="back-form">
+      <form class="example-form">
+        <div style="text-align: end; cursor: pointer;" (click)="closeForm()">
+          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path fill-rule="evenodd"
+              d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+            <path fill-rule="evenodd"
+              d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+          </svg>
+        </div>
+        <div class="align-middle">
+          <mat-form-field color="accent" class="example-full-width">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="" value="" [formControl]="title" required autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field color="accent" class="example-full-width">
+            <mat-label>Leave a discription</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required
+              autocomplete="off"></textarea>
+          </mat-form-field>
+
+
+          <mat-form-field color="accent">
+            <mat-label>Period of execution</mat-label>
+            <input matInput [matDatepicker]="picker1" [formControl]="date" required autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button (click)="onCreateTask(); hide=false">Sbmt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
