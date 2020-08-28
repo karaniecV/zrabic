@@ -11,7 +11,18 @@
         <a class="nav-link" routerLink="users-list" [routerLinkActive]="'active'"
         [routerLinkActiveOptions]="{exact: true}">Show users</a>
       </li>
-      <li class="nav-item dropdown">
+
+      <li class="nav-item" *ngIf="$user | async">
+        <a class="nav-link" routerLink="users-list" [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{exact: true}" (click)="onLogOut()">Log Out</a>
+      </li>
+
+      <li class="nav-item" *ngIf="$user | async"> 
+        <a class="nav-link" routerLink="/" [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{exact: true}">{{userName.email}}</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="!($user | async)">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Start use
@@ -24,10 +35,6 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 
