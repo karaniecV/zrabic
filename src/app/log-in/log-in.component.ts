@@ -18,12 +18,14 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogIn(){
-    this.authService.onLogIn(this.email.value, this.password.value).subscribe()
+  onLogIn() {
+    if (this.email.valid && this.password.valid) {
+      this.authService.onLogIn(this.email.value, this.password.value).subscribe()
+    }
   }
 
   getErrorMessage() {
-    if (this.email.hasError('required') ) {
+    if (this.email.hasError('required') || this.email.hasError('jhsdk')) {
       return 'You must enter a value';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';

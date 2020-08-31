@@ -5,15 +5,16 @@
     <div>
 
       <div class="row">
-        <button appFocus2 class="btn mat-raised-button edit col-3" (click)="hide=true">Edit</button>
-        <button appFocus2 class="btn mat-raised-button in-progress col-3" (click)="onMoveTaskToInProgress()"
+        <button class="btn mat-raised-button edit col-3 btn-dark" (click)="hide=true">Edit</button>
+        <button class="btn mat-raised-button in-progress col-3 btn-dark" (click)="onMoveTaskToInProgress()"
           *ngIf="task.state !== 'In Progress'">Move
           to "In Progress"</button>
-        <button appFocus2 class="btn mat-raised-button todo col-3" (click)="onMoveTaskToTodo()" *ngIf="task.state !== 'Todo'">Move to
+        <button class="btn mat-raised-button todo col-3 btn-dark" (click)="onMoveTaskToTodo()"
+          *ngIf="task.state !== 'Todo'">Move to
           "Todo"</button>
-        <button appFocus2 class="btn mat-raised-button col-3" (click)="onMoveTaskToDone()" *ngIf="task.state !== 'Done'"
-          style="background-color: rgb(134, 134, 134);">Move to "Done"</button>
-        <button appFocus2 mat-raised-button color="warn" class="col-3" (click)="onDeleteTask()">Delete</button>
+        <button class="btn mat-raised-button done col-3 btn-dark" (click)="onMoveTaskToDone()"
+          *ngIf="task.state !== 'Done'">Move to "Done"</button>
+        <button mat-raised-button class="col-3 btn-main" (click)="onDeleteTask()">Delete</button>
       </div>
 
       <div>

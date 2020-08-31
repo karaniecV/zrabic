@@ -1,14 +1,13 @@
 <div class="todo container">
   <div class="head-tasks">
-    <h2 appFocus1 [routerLink]="['todo-list']">Todo</h2>
-    <button appFocus1 mat-button (click)="hide = !hide">Add New Task</button>
+    <h2 class="hover" [routerLink]="['todo-list']">Todo</h2>
+    <button class="btn-main" mat-button (click)="hide = !hide" style="height: 40px;">Add New Task</button>
   </div>
 
   <div *ngIf="tasks">
-    <div appFocus1 *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]" style="cursor: pointer">
+    <div class="task-list hover" *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
       <div>{{task.title}}</div>
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
-      <hr>
     </div>
   </div>
 
@@ -34,8 +33,7 @@
 
           <mat-form-field color="accent" class="example-full-width">
             <mat-label>Leave a discription</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..." [formControl]="body" required
-              autocomplete="off"></textarea>
+            <textarea matInput [formControl]="body" required autocomplete="off"></textarea>
           </mat-form-field>
 
 

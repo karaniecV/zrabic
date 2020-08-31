@@ -12,7 +12,7 @@
           <mat-error *ngIf="nameFormGroup.invalid">You must enter a value</mat-error>
         </mat-form-field>
         <div>
-          <button mat-raised-button matStepperNext>Next</button>
+          <button class="btn-secondary" mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -25,8 +25,8 @@
           <mat-error *ngIf="emailFormGroup.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+          <button class="btn-secondary btn-back" mat-raised-button matStepperPrevious>Back</button>
+          <button class="btn-main" mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -39,8 +39,8 @@
           <mat-error *ngIf="passwordFormGroup.invalid">You must enter a value</mat-error>
         </mat-form-field>
         <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
+          <button class="btn-secondary btn-back" mat-raised-button matStepperPrevious>Back</button>
+          <button class="btn-main" mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -48,8 +48,8 @@
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-raised-button matStepperPrevious>Back</button>
-        <button mat-raised-button (click)="onSignUp()">Sign Up</button>
+        <button class="btn-secondary btn-back" mat-raised-button matStepperPrevious>Back</button>
+        <button class="btn-main" [disabled]="emailFormGroup.invalid || passwordFormGroup.invalid || nameFormGroup.invalid" mat-raised-button (click)="onSignUp()">Sign Up</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

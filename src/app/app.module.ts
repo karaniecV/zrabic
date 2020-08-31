@@ -28,13 +28,10 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './loader/loader.interceptor';
-import { Focus1Directive } from './shared/services/directives/focus1.directive';
-import { Focus2Directive } from './shared/services/directives/focus2.directive';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
-    Focus1Directive,
-    Focus2Directive,
     AppComponent,
     HeaderComponent,
     SignUpComponent,
@@ -63,10 +60,8 @@ import { Focus2Directive } from './shared/services/directives/focus2.directive';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
-    
-
-
+    MatTableModule,
+    MatMenuModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

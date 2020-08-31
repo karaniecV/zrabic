@@ -19,9 +19,8 @@ export const CONFIG = {
     OPERATION_NOT_ALLOWED: 'Password sign-in is disabled for this project',
     TOO_MANY_ATTEMPTS_TRY_LATER: 'We have blocked all requests from this device due to unusual activity. Try again later',
     INVALID_EMAIL: 'The email address is badly formatted',
-    // TOO_MANY_ATTEMPTS_TRY_LATER: 'Too many unsuccessful login attempts. Please try again later',
     404: 'Not Found. Could not get object',
-
+    "WEAK_PASSWORD : Password should be at least 6 characters": 'Password should be at least 6 characters'
   }
 
 }
