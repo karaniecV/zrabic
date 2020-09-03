@@ -82,7 +82,6 @@ export class ContentComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer != event.container) {
-      debugger
       if (event.previousContainer.id == 'tdList') {
         let movedTask = this.tasksTD[`${event.previousIndex}`];
         if (event.container.id == 'dList') {

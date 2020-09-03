@@ -34,7 +34,6 @@ export class TaskService {
   }
 
   changeTask(task, id, state) {
-    debugger
     return this.http.put(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${id}.json`, task)
       .pipe(
