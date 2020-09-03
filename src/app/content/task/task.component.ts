@@ -43,13 +43,11 @@ export class TaskComponent implements OnInit {
     if (isDelete) {
       this.taskService.deleteTask(this.task.id, this.task.state)
         .subscribe()
-        this.router.navigate([CONFIG.redirectUrl])
+      this.router.navigate([CONFIG.redirectUrl])
     }
   }
 
   onMoveTaskToDone() {
-    this.taskService.deleteTask(this.task.id, this.task.state)
-      .subscribe()
     const task = {
       title: this.task.title,
       body: this.task.body,
@@ -57,14 +55,12 @@ export class TaskComponent implements OnInit {
       state: CONFIG.done,
       name: this.task.name
     }
-    this.taskService.addTask(task, CONFIG.done)
+    this.taskService.changeTask(task, this.task.id, CONFIG.done)
       .subscribe()
-      this.toMainPage()
+    this.toMainPage()
   }
 
   onMoveTaskToInProgress() {
-    this.taskService.deleteTask(this.task.id, this.task.state)
-      .subscribe()
     const task = {
       title: this.task.title,
       body: this.task.body,
@@ -72,14 +68,12 @@ export class TaskComponent implements OnInit {
       state: CONFIG.inProgress,
       name: this.task.name
     }
-    this.taskService.addTask(task, CONFIG.inProgress)
+    this.taskService.changeTask(task, this.task.id, CONFIG.inProgress)
       .subscribe()
-      this.toMainPage()
+    this.toMainPage()
   }
 
   onMoveTaskToTodo() {
-    this.taskService.deleteTask(this.task.id, this.task.state)
-      .subscribe()
     const task = {
       title: this.task.title,
       body: this.task.body,
@@ -87,9 +81,9 @@ export class TaskComponent implements OnInit {
       state: CONFIG.todo,
       name: this.task.name
     }
-    this.taskService.addTask(task, CONFIG.todo)
+    this.taskService.changeTask(task, this.task.id, CONFIG.todo)
       .subscribe()
-      this.toMainPage()
+    this.toMainPage()
   }
 
   onEditTask() {
@@ -109,8 +103,8 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  toMainPage(){
+  toMainPage() {
     this.router.navigate([''])
   }
-  
+
 }

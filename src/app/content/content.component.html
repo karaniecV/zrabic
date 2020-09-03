@@ -1,23 +1,149 @@
 <div class="container">
-  <div class="row" *ngIf="user">
-    <div class="col-md-4">
-      <app-todo></app-todo>
+  <div *ngIf="user">
+
+
+
+    <div class="container">
+      <div class="row" cdkDropListGroup>
+
+        <div class="example-container col-md-4">
+          <div class="task-container todo">
+            <div class="head-tasks">
+              <h2 class="hover" [routerLink]="['todo-list']">Todo</h2>
+              <button class="btn-main" mat-button (click)="onStateTodo()" style="height: 40px;">Add New Task</button>
+            </div>
+            <div id="tdList" cdkDropList [cdkDropListData]="tasksTD" class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box task-list hover" *ngFor="let item of tasksTD" cdkDrag
+                [routerLink]="['/tasks', item.id]">
+                <div>{{item.title}}</div>
+                <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-container col-md-4">
+          <div class="task-container in-progress">
+            <div class="head-tasks">
+              <h2 class="hover" [routerLink]="['in-progress-list']">In Progress</h2>
+              <button class="btn-main" mat-icon-button [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-button (click)="onStateInProgress()">Add In Progress Task</button>
+              </mat-menu>
+            </div>
+            <div id="ipList" cdkDropList [cdkDropListData]="tasksIP" class="example-list" cdkDropListSortingDisabled
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box task-list hover" *ngFor="let item of tasksIP" cdkDrag
+                [routerLink]="['/tasks', item.id]">
+                <div>{{item.title}}</div>
+                <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-container col-md-4">
+          <div class="task-container done">
+            <div class="head-tasks">
+              <h2 class="hover" [routerLink]="['done-list']">Done</h2>
+              <button class="btn-main" mat-icon-button [matMenuTriggerFor]="menu1"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu1="matMenu">
+                <button mat-button (click)="onStateDone()">Add Done Task</button>
+              </mat-menu>
+            </div>
+            <div id="dList" cdkDropList [cdkDropListData]="tasksD" class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box task-list hover" *ngFor="let item of tasksD" cdkDrag
+                [routerLink]="['/tasks', item.id]">
+                <div>{{item.title}}</div>
+                <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
-    <div class="col-md-4">
-      <app-in-prgrs></app-in-prgrs>
+
+    <div class="create-task" *ngIf="hide">
+      <div class="back"></div>
+      <div class="back-form">
+        <form class="example-form">
+          <div style="text-align: end; cursor: pointer;" (click)="closeForm()">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+              <path fill-rule="evenodd"
+                d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+              <path fill-rule="evenodd"
+                d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+            </svg>
+          </div>
+          <div class="align-middle">
+            <mat-form-field color="accent" class="example-full-width">
+              <mat-label>Title</mat-label>
+              <input matInput placeholder="" value="" [formControl]="title" required autocomplete="off">
+            </mat-form-field>
+  
+            <mat-form-field color="accent" class="example-full-width">
+              <mat-label>Leave a discription</mat-label>
+              <textarea matInput [formControl]="body" required
+                autocomplete="off"></textarea>
+            </mat-form-field>
+  
+  
+            <mat-form-field color="accent">
+              <mat-label>Period of execution</mat-label>
+              <input matInput [matDatepicker]="picker1" [formControl]="date" required autocomplete="off">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button (click)="onCreateTask(); hide=false">Sbmt</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="col-md-4">
-      <app-done></app-done>
-    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
-  <div *ngIf="!user" style="position: fixed;
-  top: 130px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div *ngIf="!user" style="position: fixed; top: 130px; left: 0; right: 0; display: flex; justify-content: center;
+    align-items: center;">
     <button [routerLink]="['users-list']" mat-raised-button style="margin: 20px; color: #F44336;">Show Users</button>
     <button [routerLink]="['log-in']" mat-raised-button color="warn" style="margin: 20px; ">Start Use</button>
   </div>

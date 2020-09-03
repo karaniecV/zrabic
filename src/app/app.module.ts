@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './loader/loader.interceptor';
 import {MatMenuModule} from '@angular/material/menu';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatMenuModule
+    MatMenuModule,
+    DragDropModule
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
