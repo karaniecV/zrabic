@@ -10,7 +10,7 @@
   </div>
 
   <div *ngIf="tasks">
-    <div class="task-list hover" *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
+    <div class="task-list hover" *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]" cdkDrag>
       <div>{{task.title}}</div>
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
     </div>
