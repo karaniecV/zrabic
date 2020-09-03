@@ -34,16 +34,17 @@ export class TaskService {
   }
 
   changeTask(task, id, state) {
+    debugger
     return this.http.put(`${CONFIG.dataBaseUsers}/tasksData/${localStorage
       .getItem(`${CONFIG.localStorageUserId}`)}/${id}.json`, task)
       .pipe(
         tap((data: { name: string }) => {
           if (state === CONFIG.todo) {
-            this._tasks.unshift({ id: data.name, ...task })
+            this._tasks.unshift({ id: id, ...task })
           } else if (state === CONFIG.inProgress) {
-            this._tasksIP.unshift({ id: data.name, ...task })
+            this._tasksIP.unshift({ id: id, ...task })
           } else if (state === CONFIG.done) {
-            this._tasksD.unshift({ id: data.name, ...task })
+            this._tasksD.unshift({ id: id, ...task })
           }
         })
       )
