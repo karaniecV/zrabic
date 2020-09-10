@@ -1,0 +1,23 @@
+@import "variables";
+
+.post{
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+
+.post-script, .todo{
+  background: $background3;
+}
+.post-title, .in-progress{
+  background: $background2;
+}
+.post-date, .edit{
+  background: $background1;
+}
+
+.post-date, .post-title, .post-script{
+  margin: 0;
+  padding: 10px;
+}

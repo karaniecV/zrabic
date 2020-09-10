@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { CONFIG } from 'src/app/shared/config';
 import { Task } from 'src/app/shared/models/task.model';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from 'src/app/auth/auth-service/auth.service';
 
 
 @Component({

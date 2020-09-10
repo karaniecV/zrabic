@@ -1,22 +1,18 @@
-// .error-container {
-//   position: fixed;
-//   left: 30%;
-//   top: 50%;
-//   z-index: 9999;
-// }
-// h2{
-//   font-size: 20px;
-// }
-
-
-.mistake{
+.error-container{
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
 }
-.mistake p{
+
+.error-container p{
   margin-top: 2px;
 }
-.mistake img{
+
+.error-container img{
   height: 24px;
   margin: 0px 0px 16px;
 }

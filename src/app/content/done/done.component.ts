@@ -4,7 +4,7 @@ import { Task } from 'src/app/shared/models/task.model';
 import { FormControl, Validators } from '@angular/forms';
 import { TaskService } from 'src/app/shared/services/task-service/task.service';
 import { CONFIG } from 'src/app/shared/config';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from 'src/app/auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-done',

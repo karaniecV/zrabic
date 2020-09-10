@@ -1,5 +1,16 @@
 @import "variables";
 
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
 .post{
   border-radius: 10px;
   padding: 15px;
@@ -17,47 +28,36 @@
   background: rgba(41, 42, 43, 0.8);
 }
 
-
 .example-form{
-  position: absolute;
+  position: fixed;
   z-index: 101;
   background-color: rgb(224, 216, 219);
   padding: 20px;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 350px;
 }
-
 .align-middle{
   display: flex;
   flex-direction: column;
 }
 
-.post-script, .todo{
+.post-script{
   background: $background3;
 }
-.post-title, .in-progress{
+.post-title{
   background: $background2;
 }
-.post-date, .edit{
+.post-date{
   background: $background1;
-}
-.done{
-  background-color: rgb(134, 134, 134);
 }
 
 .post-date, .post-title, .post-script{
   margin: 0;
   padding: 10px;
 }
-
-.btn-dark{
-  &:hover{
-    color: black;
-    background-color: white;
-    border-color: #545b62;
-  }
+svg{
+  margin-bottom: 20px;
 }

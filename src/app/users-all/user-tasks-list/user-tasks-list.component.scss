@@ -1,0 +1,18 @@
+@import "variables";
+
+.user-task{
+  padding: 10px 20px;
+  border-bottom: solid 1px #ccc;
+  background: transparent;
+  font-size: 16px;
+  &:hover{
+    transition: 0.3s;
+    background: $background2;
+  }
+  text-align: center;
+}
+
+.task-title{
+  padding: 10px 20px;
+  text-align: center;
+}

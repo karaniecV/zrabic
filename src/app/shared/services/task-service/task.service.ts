@@ -4,6 +4,7 @@ import { tap, map } from 'rxjs/operators';
 import { Task } from '../../models/task.model';
 import { Observable } from 'rxjs';
 import { CONFIG } from 'src/app/shared/config';
+import { User } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TaskService {
   private _tasksIP: Task[];
   private _tasksD: Task[];
   ELEMENT_DATA: Task[];
+  usersArr: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -149,13 +151,41 @@ export class TaskService {
             }
             tasks1.pop();
             tasks1.forEach(i => this.ELEMENT_DATA.push(i))
-            this.ELEMENT_DATA.forEach(i => {
-            })
           })
           return this.ELEMENT_DATA;
+
         })
       )
   }
+
+  getUsersTasks() {
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData.json`)
+      .pipe(
+        map((data) => {
+          const tasks = [];
+          for (let key in data) {
+            tasks.unshift({ id: key, ...data[key] });
+          }
+          this.usersArr = tasks;
+          return this.usersArr;
+        })
+      )
+  }
+
+  getUserTasks(id) {
+    return this.http.get(`${CONFIG.dataBaseUsers}/tasksData/${id}.json`)
+      .pipe(
+        map((data) => {
+          let tasks = [];
+          for (let key in data) {
+            tasks.unshift({ id: key, ...data[key] })
+          }
+          return tasks;
+        })
+      )
+  }
+
+
 
 
 
