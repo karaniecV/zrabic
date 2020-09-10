@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
-import { User } from '../shared/models/user.model';
 import { Subscription } from 'rxjs';
+import { User } from '../models/user.model';
+import { AuthService } from 'src/app/auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogOut(){
-    this.authService.logOut() 
+    this.authService.logOut();
   }
 
   ngOnDestroy(){

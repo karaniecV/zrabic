@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormControl, Validators } from '@angular/forms';
 import { TaskService } from 'src/app/shared/services/task-service/task.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { CONFIG } from 'src/app/shared/config';
+import { AuthService } from 'src/app/auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-task',

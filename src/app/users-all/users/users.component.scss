@@ -1,0 +1,18 @@
+@import "variables";
+
+.users-container{
+  padding: 10px 20px;
+  border-bottom: solid 1px #ccc;
+  background: transparent;
+  font-size: 16px;
+  &:hover{
+    transition: 0.3s;
+    background: $background1;
+  }
+  text-align: center;
+}
+
+.users-title{
+  padding: 10px 20px;
+  text-align: center;
+}

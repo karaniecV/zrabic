@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthResponse } from '../interfaces/auth.response';
 import { tap, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { CONFIG } from 'src/app/shared/config';
-import { UserName } from '../models/user-name.model';
+import { AuthResponse } from '../../shared/interfaces/auth.response';
+import { UserName } from '../../shared/models/user-name.model';
+import { User } from '../../shared/models/user.model';
 
 
 @Injectable({

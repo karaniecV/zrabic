@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div class="post" *ngIf="task">
+
+    <div class="post-date" style="  background-color: rgb(240, 239, 239)">
+      <h3>Period: {{ task.date | date:'MM/dd/yyyy' }}</h3>
+    </div>
+
+    <div class="post-title" style="background-color: rgb(211, 209, 209);">
+      <h1>Title: {{ task.title }}</h1>
+    </div>
+
+    <div class="post-script" style="background-color: rgb(175, 175, 175);">
+      <h2>Description: {{ task.body }}</h2>
+    </div>
+
+  </div>
+
+
+</div>

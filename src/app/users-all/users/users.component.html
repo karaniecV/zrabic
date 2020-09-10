@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row users-title">
+    <div class="col-8"><h3>Users:</h3></div>
+    <div class="col-4"><h3>Number of tasks:</h3></div>
+</div>
+
+  <div class="users-container row hover" *ngFor="let item of users" [routerLink]="['/users', item[0].value]" style="cursor:pointer">
+      <div class="user-name col-8">{{item[1].value.name}}</div>
+      <div class="user-length col-4">{{item.length - 1}}</div>
+  </div>
+</div>

@@ -3,8 +3,8 @@ import { CONFIG } from 'src/app/shared/config';
 import { FormControl, Validators } from '@angular/forms';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task-service/task.service';
-import { AuthService } from '../shared/services/auth.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { AuthService } from '../auth/auth-service/auth.service';
 
 @Component({
   selector: 'app-content',
