@@ -7,34 +7,3 @@
     padding-bottom: 30px;
   }
 }
-
-.back {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(168, 182, 201, 0.8);
-}
-
-.back-form{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 101;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.example-form{
-  width: 300px;
-  min-height: 350px;
-  z-index: 102;
-  background-color: lavenderblush;
-  padding: 20px;
-}

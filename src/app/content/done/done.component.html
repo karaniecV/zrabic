@@ -1,16 +1,11 @@
 <div class="done container">
   <div class="head-tasks">
-    <h2 class="hover" [routerLink]="['done-list']">Done</h2>
-    <button class="btn-main"  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button  mat-button (click)="hide = !hide">Add Done Task</button>
-    </mat-menu>
+    <h2>Done</h2>
+    <button class="btn-main" mat-button (click)="hide = !hide" style="height: 40px;">Add New Task</button>
   </div>
 
   <div *ngIf="tasks">
-    <div class="task-list hover" *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
+    <div class="example-box task-list hover" *ngFor="let task of tasks | async" [routerLink]="['/tasks', task.id]">
       <div>{{task.title}}</div>
       <div>Until: {{task.date | date: 'MM/dd/yyyy'}}</div>
     </div>
@@ -38,8 +33,7 @@
 
           <mat-form-field color="accent" class="example-full-width">
             <mat-label>Leave a discription</mat-label>
-            <textarea matInput [formControl]="body" required
-              autocomplete="off"></textarea>
+            <textarea matInput [formControl]="body" required autocomplete="off"></textarea>
           </mat-form-field>
 
 
@@ -50,7 +44,7 @@
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
           <br>
-          <button mat-raised-button (click)="onCreateTask(); hide=false">Sbmt</button>
+          <button mat-raised-button (click)="onCreateTask(); hide=false">Submit</button>
         </div>
       </form>
     </div>

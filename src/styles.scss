@@ -35,7 +35,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 16px;
+  padding-bottom: 5px;
   button {
     transition: 0.3s;
     color: white;
@@ -54,9 +54,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: #545b62;
   }
 }
+
 .btn-secondary{
   background: white;
   color: #F44336 ;
+}
+
+.btn-third{
+  background: transparent;
+  &:hover{
+    color: white;
+    background-color:#F44336;
+    border-color: #545b62;
+  }
 }
 
 .btn-login{
@@ -73,4 +83,56 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   &:hover {
     color: #F44336;
   }
+}
+
+.example-box {
+  padding: 5px 20px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: move;
+  background: transparent;
+  font-size: 14px;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: #ece9e9;
+  &:hover{
+    background: white;
+  }
+}
+
+.example-form{
+  position: absolute;
+  z-index: 101;
+  background-color: rgb(224, 216, 219);
+  padding: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 350px;
+  border-radius: 3px;
+}
+
+
+.back {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(41, 42, 43, 0.8);
+}
+
+.align-middle{
+  display: flex;
+  flex-direction: column;
+}
+
+li{
+  background: #222222;
+  margin-right: 5px;
+  border-radius: 3px;
 }
