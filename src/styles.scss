@@ -48,6 +48,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btn-main{
   background: #F44336;
   color: white;
+  transition: 0.5s;
   &:hover{
     color: black;
     background-color: white;
@@ -62,6 +63,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .btn-third{
   background: transparent;
+  transition: 0.5s;
   &:hover{
     color: white;
     background-color:#F44336;
@@ -79,7 +81,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .hover {
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.9s;
   &:hover {
     color: #F44336;
   }

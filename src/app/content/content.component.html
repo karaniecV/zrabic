@@ -12,11 +12,14 @@
               <span class="hover" [routerLink]="['todo-list']">To Do</span>
             </div>
             <div id="tdList" cdkDropList [cdkDropListData]="tasksTD" class="example-list"
-              (cdkDropListDropped)="drop($event)">
+              (cdkDropListDropped)="drop($event)" >
               <div class="example-box task-list hover" *ngFor="let item of tasksTD" cdkDrag
                 [routerLink]="['/tasks', item.id]">
                 <div>{{item.title}}</div>
                 <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
+              </div>
+              <div class="example-box task-list hover" *ngIf="tasksTD.length < 1">
+                <div>You don't have any tasks here yet ...</div>
               </div>
             </div>
             <button class="btn-third" mat-button (click)="onStateTodo()" style="height: 40px;">+ Add New Task</button>
@@ -37,6 +40,10 @@
                 <div>{{item.title}}</div>
                 <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
               </div>
+              <div class="example-box task-list hover" *ngIf="tasksIP.length < 1">
+                <div>You don't have any tasks here yet ...</div>
+              </div>
+
             </div>
             <button class="btn-third" mat-button (click)="onStateInProgress()" style="height: 40px;">+ Add New
               Task</button>
@@ -56,6 +63,10 @@
                 <div>{{item.title}}</div>
                 <div>Until: {{item.date | date: 'MM/dd/yyyy'}}</div>
               </div>
+              <div class="example-box task-list hover" *ngIf="tasksD.length < 1">
+                <div>You don't have any tasks here yet ...</div>
+              </div>
+
             </div>
             <button class="btn-third" mat-button (click)="onStateDone()" style="height: 40px;">+ Add New Task</button>
 

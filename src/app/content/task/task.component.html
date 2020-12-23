@@ -4,23 +4,31 @@
 
     <div>
 
-      <div class="row">
-        <button class="btn mat-raised-button edit col-3 btn-dark" (click)="hide=true">Edit</button>
-        <button class="btn mat-raised-button in-progress col-3 btn-dark" (click)="onMoveTaskToInProgress()"
-          *ngIf="task.state !== 'In Progress'">Move
-          to "In Progress"</button>
-        <button class="btn mat-raised-button todo col-3 btn-dark" (click)="onMoveTaskToTodo()"
-          *ngIf="task.state !== 'Todo'">Move to
-          "Todo"</button>
-        <button class="btn mat-raised-button done col-3 btn-dark" (click)="onMoveTaskToDone()"
-          *ngIf="task.state !== 'Done'">Move to "Done"</button>
-        <button mat-raised-button class="col-3 btn-main" (click)="onDeleteTask()">Delete</button>
-      </div>
+      <div class="single-task">
 
-      <div>
+        <div class="post-date" style="background-color: rgb(240, 239, 239)">
+          <h3 >Period: {{ task.date | date:'MM/dd/yyyy' }}</h3>
+          <div class="button-menu">
+            <button class="btn-main" mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="menu">
+              <button mat-menu-item class="btn mat-raised-button edit col-3 btn-dark" (click)="hide=true">Edit</button>
+              <button mat-menu-item class="btn mat-raised-button in-progress col-3 btn-dark"
+                (click)="onMoveTaskToInProgress()" *ngIf="task.state !== 'In Progress'">Move
+                to "In Progress"</button>
+              <button mat-menu-item class="btn mat-raised-button todo col-3 btn-dark" (click)="onMoveTaskToTodo()"
+                *ngIf="task.state !== 'Todo'">Move to
+                "Todo"</button>
+              <button mat-menu-item class="btn mat-raised-button done col-3 btn-dark" (click)="onMoveTaskToDone()"
+                *ngIf="task.state !== 'Done'">Move to "Done"</button>
+              <button mat-menu-item class="col-3 btn-main" (click)="onDeleteTask()">Delete</button>
+            </mat-menu>
+          </div>
 
-        <div class="post-date" style="  background-color: rgb(240, 239, 239)">
-          <h3>Period: {{ task.date | date:'MM/dd/yyyy' }}</h3>
+
+
         </div>
 
         <div class="post-title" style="background-color: rgb(211, 209, 209);">
