@@ -61,3 +61,8 @@ table {
 svg{
   margin-bottom: 20px;
 }
+
+.user-task:hover > td{
+  cursor: pointer;
+  color: white;
+}

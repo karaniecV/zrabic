@@ -5,3 +5,8 @@ li {
   padding-left: 10px;
   margin: 5px;
 }
+
+li:hover{
+  background-color: gray;
+  transition: 0.5s;
+}

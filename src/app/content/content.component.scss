@@ -51,7 +51,12 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+span{
+  padding: 5px 10px;
+  font-size: large;
+  font-weight: 500;
 }

@@ -17,12 +17,15 @@
 .post-script, .todo{
   background: $background3;
 }
+
 .post-title, .in-progress{
   background: $background2;
 }
+
 .post-date, .edit{
   background: $background1;
 }
+
 .done{
   background-color: rgb(134, 134, 134);
 }
@@ -30,14 +33,6 @@
 .post-date, .post-title, .post-script{
   margin: 0;
   padding: 10px;
-}
-
-.btn-dark{
-  &:hover{
-    color: black;
-    background-color: white;
-    border-color: #545b62;
-  }
 }
 
 .single-task *{

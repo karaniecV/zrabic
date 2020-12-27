@@ -87,6 +87,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.btn-dark{
+  &:hover{
+    color: black;
+    background-color: white;
+    border-color: #545b62;
+  }
+}
+
 .example-box {
   padding: 5px 20px;
   border: solid 1px #ccc;
@@ -102,6 +110,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   &:hover{
     background: white;
   }
+}
+
+.none-tasks{
+  pointer-events:none;
+  height: 40px;
+  padding: 10px;
 }
 
 .example-form{
